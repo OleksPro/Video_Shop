@@ -1,5 +1,6 @@
 from .models import Course
-from django.views.generic import ListView
+from django.views.generic import ListView, DeleteView
+
 
 class HomePage(ListView):
     model = Course
@@ -12,3 +13,7 @@ class HomePage(ListView):
         ctx['title'] = 'Головна сторінка'
         return ctx
     
+
+class CourseDetailPage(DeleteView):
+    model = Course
+    template_name = 'courses/course-detail.html'
