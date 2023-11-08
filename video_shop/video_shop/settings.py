@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'courses'
+    'courses',
+    'users.apps.UsersConfig',
+    'crispy_forms'
 ]
 
 MIDDLEWARE = [
@@ -129,3 +131,7 @@ MEDIA_ROOT = BASE_DIR / 'pictures'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+LOGIN_URL = 'user'
+LOGIN_REDIRECT_URL = 'home'
+
+CRISPY_TEMPLATE_PACK = 'uni_form'

@@ -1,0 +1,21 @@
+{% extends 'courses/main-layout.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    Сторінка авторизації
+{% endblock %}
+
+{% block main_section %}
+    <div class="container">
+        <h1>Сторінка авторизації</h1>
+        <!-- Вивід форми Django (Users.views.register.form) -->
+        <form method="post" class="form-registration auth">
+            <!-- csrf_token Захист від міжсайтової підробки запитів -->
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-outline-warning" type="submit">Вхід</button>
+            <hr>
+            <p>Забули пароль? <a href="{% url 'password_reset' %}">Отримати новий пароль</a></p>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'courses/main-layout.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block main_section %}
+    <div class="container">
+        <h1>{{ title }}</h1>
+        <!-- Вивід форми Django (Users.views.register.form) -->
+        <form method="post" class="form-registration">
+            <!-- csrf_token Захист від міжсайтової підробки запитів -->
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-outline-warning" type="submit">Зареєструватись</button>
+            <hr>
+            <p>Ви вже зареєстровані? <a href="{% url 'user' %}">Зайти в особистий кабінет</a></p>
+        </form>
+    </div>
+{% endblock %}
