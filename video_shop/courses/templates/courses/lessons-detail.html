@@ -15,12 +15,29 @@
         <div class="aside-course">
             <h3>Відео урок - {{ title }}</h3>
             <p>{{ desc }}</p>
-
+            {% if object.free == True %}
             <iframe width="560" height="315" src="https://www.youtube.com/embed/{{video}}" 
             title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; 
             clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
             allowfullscreen>
             </iframe>
+            {% elif user.is_authenticated == False %}
+                <p>
+                    <a href="{% url 'registration' %}">Зареєструйтесь</a> на сайті і купіть підписку, 
+                    для перегляду цього курсу
+                </p>
+            {% elif user.profile.account_type == 'Безкоштовний пакет' %}
+                <p>
+                    Потрібно купити <a href="{% url 'tarrifs' %}">підписку</a> 
+                    на сайті для перегляду цього курсу
+                </p>
+            {% else %}
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/{{video}}" 
+                title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; 
+                clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                allowfullscreen>
+                </iframe>
+            {% endif %}
         </div>
     </div>
 

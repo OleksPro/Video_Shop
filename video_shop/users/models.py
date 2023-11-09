@@ -2,11 +2,21 @@ from django.db import models
 from django.contrib.auth.models import User
 from PIL import Image
 
+TYPE_CHOICES = (
+    ('Повний пакет', 'full'),
+    ('Безкоштовний пакет', 'free')
+)
+
 # Створюемо нову таблицю
 class Profile(models.Model):
     # Створює зв'язок між двома моделями
     user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name='Користувач')
     img = models.ImageField('Фото профілю', default='default.png', upload_to='user_images')
+    account_type = models.CharField(
+        choices=TYPE_CHOICES, 
+        default='Безкоштовний пакет', 
+        max_length=30
+        )
     
     def __str__(self):
         return f'Профіль користувача {self.user.username}'
