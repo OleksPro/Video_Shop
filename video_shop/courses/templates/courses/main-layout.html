@@ -17,10 +17,9 @@
             <h2>Shopster</h2>
           </a>
         </div>
-        
         <ul class="nav col-12 col-md-auto mx-3 justify-content-center mb-md-0">
           <li><a href="{% url 'home' %}" class="nav-link px-2 link-secondary">Головна</a></li>
-          <li><a href="#" class="nav-link px-2">Тарифи</a></li>
+          <li><a href="{% url 'tarrifs' %}" class="nav-link px-2">Тарифи</a></li>
           {% if user.is_authenticated %}
             <a href="{% url 'profile' %}" class="btn btn-outline-success mx-2">Профіль</a>
             <a href="{% url 'exit' %}" class="btn btn-outline-danger mx-2">Вихід</a>
@@ -33,7 +32,6 @@
       </header>
     {% block main_section %}
   
-
     {% endblock %}
 
     <footer class="pt-4 my-md-5 pt-md-5 border-top">

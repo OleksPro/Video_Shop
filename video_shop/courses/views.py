@@ -1,6 +1,6 @@
 from .models import Course, Lesson
 from django.views.generic import ListView, DeleteView
-
+from django.shortcuts import render
 
 class HomePage(ListView):
     model = Course
@@ -12,7 +12,9 @@ class HomePage(ListView):
         ctx = super(HomePage, self).get_context_data(**kwargs)
         ctx['title'] = 'Головна сторінка'
         return ctx
-    
+
+def tarrifsPage(request):
+    return render(request, 'courses/tarrifs.html', {'title': 'Тарифи на курси'})
 
 class CourseDetailPage(DeleteView):
     model = Course

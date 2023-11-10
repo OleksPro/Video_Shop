@@ -1,0 +1,49 @@
+{% extends 'courses/main-layout.html' %}
+{% block main_section %}
+
+    <div class="countainer mx-5">
+        <h2>{{ title }}</h2>
+        {% if user.is_authenticated == False or user.profile.account_type == 'Безкоштовний пакет' %}
+            <p>В нас на сайті ви зможете придбати повну підписку, для отримання повного доступу до курсів<p>
+            <div class="row row-cols-1 row-cols-md-2 mb-5 text-center">
+                <div class="col">
+                <div class="card mb-4 rounded-3 shadow-sm">
+                    <div class="card-header py-3">
+                    <h4 class="my-0 fw-normal">Безкоштовний</h4>
+                    </div>
+                    <div class="card-body">
+                    <h1 class="card-title pricing-card-title">$0<small class="text-body-secondary fw-light"></small></h1>
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <li>Безкоштовні курси</li>
+                        <li>Базова техпідтримка</li>
+                        <li>Консультація</li>
+                        <li>Базові завдання</li>
+                    </ul>
+                    <button type="button" class="w-100 btn btn-lg btn-outline-primary">Зареєструватись</button>
+                    </div>
+                </div>
+                </div>
+                <div class="col">
+                <div class="card mb-4 rounded-3 shadow-sm">
+                    <div class="card-header py-3">
+                    <h4 class="my-0 fw-normal">Повний</h4>
+                    </div>
+                    <div class="card-body">
+                    <h1 class="card-title pricing-card-title">$15<small class="text-body-secondary fw-light"></small></h1>
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <li>Повністю всі курси</li>
+                        <li>Покращена техпідтримка</li>
+                        <li>Консультація</li>
+                        <li>Домашне завдання</li>
+                    </ul>
+                    <button type="button" class="w-100 btn btn-lg btn-primary">Придбати</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+          {% else %}
+            <p>У вас придбана максимальна підписка!</p>
+          {% endif %}
+    </div>
+
+{% endblock %} 
