@@ -1,6 +1,8 @@
 from .models import Course, Lesson
 from django.views.generic import ListView, DeleteView
 from django.shortcuts import render
+from cloudipsp import Api, Checkout
+import time
 
 class HomePage(ListView):
     model = Course
@@ -14,7 +16,19 @@ class HomePage(ListView):
         return ctx
 
 def tarrifsPage(request):
-    return render(request, 'courses/tarrifs.html', {'title': 'Тарифи на курси'})
+    api = Api(merchant_id=1536773,
+            secret_key='iGYhDhP064ILgZjzwi33ViMHZzxpHuwL')
+    checkout = Checkout(api=api)
+    data = {
+        "currency": "USD",
+        "amount": 1500,
+        "order_desc": "Купівля підписки на сайті",
+        "order_id": str(time.time())
+    }
+    url = checkout.url(data).get('checkout_url')
+    return render(request, 'courses/tarrifs.html', {'title': 'Тарифи на курси','url': url})
+    
+    
 
 class CourseDetailPage(DeleteView):
     model = Course
